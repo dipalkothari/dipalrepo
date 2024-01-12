@@ -51,6 +51,26 @@ namespace Sample.Services
             }
         }
 
+        public async Task<Employee> GetAllEmployee(string empValue)
+        {
+            try
+            {
+                if (empValue == null)
+                {
+                    throw new ArgumentNullException(nameof(empValue));
+                }
+                else
+                {
+                    return await _repository.GetAllEmployee(empValue);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
         public void DeleteEmployee(int Id)
         {
             try

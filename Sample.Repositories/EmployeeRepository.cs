@@ -11,6 +11,8 @@ namespace Sample.Repositories
         Task<Employee> AddEmployee(Employee employee);
         Task<Employee> UpdateEmployee(Employee employee);
         void DeleteEmployee(int employeeId);
+
+        Task<Employee> GetAllEmployee(string empValue);
     }
 
     public class EmployeeRepository : IEmployeeRepository
@@ -57,6 +59,12 @@ namespace Sample.Repositories
                 repositoryContext.Employees.Remove(result);
                 await repositoryContext.SaveChangesAsync();
             }
+        }
+
+        public async Task<Employee> GetAllEmployee(string empValue)
+        {
+            var result = await repositoryContext.Employees.FirstOrDefaultAsync(x => x.FirstName == empValue || x.LastName == empValue || x.Age.ToString() == empValue);
+            return result;
         }
 
 

@@ -61,5 +61,19 @@ namespace SampleWebApi.Controllers
                 return BadRequest("Something went wrong");
             }
         }
+
+        [HttpDelete("getAllEmployee")]
+        public async Task<IActionResult> GetAllEmployee(string value)
+        {
+            try
+            {
+                return Ok(await _employeeService.GetAllEmployee(value));
+            }
+
+            catch (Exception)
+            {
+                return BadRequest("Something went wrong");
+            }
+        }
     }
 }
