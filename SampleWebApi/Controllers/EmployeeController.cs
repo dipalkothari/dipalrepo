@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Sample.Domains;
+using Sample.Services;
+using System;
 using System.Threading.Tasks;
 
 namespace SampleWebApi.Controllers
@@ -7,9 +10,56 @@ namespace SampleWebApi.Controllers
     [Route("[controller]")]
     public class EmployeeController : ControllerBase
     {
-        public async Task<IActionResult> ping()
+        //public async Task<IActionResult> ping()
+        //{
+        //    return Ok();
+        //}
+        private EmployeeService _employeeService;
+
+        public EmployeeController(EmployeeService employeeService)
         {
-            return Ok();
+            _employeeService = employeeService;
+        }
+
+        [HttpPost("addEmployee")]
+        public async Task<IActionResult> AddEmployee(Employee employee)
+        {
+            try
+            {
+                return Ok(await _employeeService.AddEmployee(employee));
+            }
+            catch (Exception)
+            {
+                return BadRequest("Something went wrong");
+            }
+        }
+
+        [HttpPut("updateEmployee")]
+        public async Task<IActionResult> UpdateEmployee(Employee employee)
+        {
+            try
+            {
+                return Ok(await _employeeService.UpdateEmployee(employee));
+            }
+            catch (Exception)
+            {
+                return BadRequest("Something went wrong");
+            }
+        }
+
+        [HttpDelete("deleteEmployee")]
+        public async Task<IActionResult> DeleteEmployee(int Id)
+        {
+            try
+            {
+                _employeeService.DeleteEmployee(Id);
+                return Ok();
+            }
+          
+            catch (Exception)
+            {
+                return BadRequest("Something went wrong");
+            }
         }
     }
 }
