@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Sample.Repositories
@@ -79,7 +80,7 @@ namespace Sample.Repositories
         {
             // var result = appDbContext.Employees.wh.ToList();
 
-            var rr = await appDbContext.Employees.FirstOrDefaultAsync(x => x.Id == Guid);
+            var rr = await appDbContext.Employees.FirstOrDefaultAsync(x => x.Id == Id);
 
             return rr;
 

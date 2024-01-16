@@ -75,7 +75,7 @@ namespace Sample.Services
             }
         }
 
-        public async Task<EmployeeDTO> GetEmployeeById(string Id)
+        public async Task<EmployeeDTO> GetEmployeeById(Guid Id)
         {
             try
             {
