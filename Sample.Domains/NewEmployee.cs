@@ -5,7 +5,7 @@ using System.Text;
 namespace Sample.Domains
 {
 
-    public class NewEmployee
+    public class Employee
     {
         [Key]
         [Required(ErrorMessage = "Id is required")]
